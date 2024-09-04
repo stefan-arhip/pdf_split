@@ -73,7 +73,11 @@ def citire_fisier(fisier):
 
 if __name__ == "__main__":
     param_count = len(sys.argv)
-    input_file = "C:\TEMP8\PDF-2.txt"
+    script_path = os.path.abspath(__file__)
+    script_name = os.path.basename(script_path)
+    input_file, _ = os.path.splitext(script_name)
+    input_file = os.path.join(os.path.dirname(script_path), input_file + ".txt")
+
     if param_count-1 == 0:
         print("Nu s-a specificat nici un fisier, se foloseste: ", input_file)
         if os.path.isfile(f"{input_file}"):
@@ -95,7 +99,7 @@ if __name__ == "__main__":
         linie = [f"{args.input_file}",f"{args.output_folder}"]
         date = [linie]
     else:
-        print("Imparte un PDF în fisiere separate bazat pe sectiunile \"Furnizor:\".")
+        print("Imparte un PDF in fisiere separate bazat pe sectiunile \"Furnizor:\".")
         print("Scriptul functioneaza:")
         print("   - fara nici un parametru (procesand fisierul din script <",input_file,">)")
         print("   - cu un parametru (fisier ce contine lista .pdf-urilor de procesat)")
