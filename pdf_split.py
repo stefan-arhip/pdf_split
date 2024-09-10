@@ -107,15 +107,19 @@ if __name__ == "__main__":
         date = ""
 
     for linie in date:
-        pdf_file, output_folder = linie        
-        if os.path.isfile(f"{pdf_file}"):
-            if pdf_file.lower().endswith(('.pdf')):
-                if os.path.exists(f"{output_folder}"):
-                    print("Se proceseaza fisierul: ", pdf_file)
-                    split_pdf_by_furnizor(pdf_file, output_folder)
-                else:
-                    print("Nu exista directorul: ", output_folder)
-            else:
-                print("Fisierul nu are extensia .pdf: ", pdf_file)
+        print(linie)
+        if len(linie) == 0:
+            print("Ignor linia goala")
         else:
-            print("Nu a fost gasit fisierul: ", pdf_file)
+            pdf_file, output_folder = linie        
+            if os.path.isfile(f"{pdf_file}"):
+                if pdf_file.lower().endswith(('.pdf')):
+                    if os.path.exists(f"{output_folder}"):
+                        print("Se proceseaza fisierul: ", pdf_file)
+                        split_pdf_by_furnizor(pdf_file, output_folder)
+                    else:
+                        print("Nu exista directorul: ", output_folder)
+                else:
+                    print("Fisierul nu are extensia .pdf: ", pdf_file)
+            else:
+                print("Nu a fost gasit fisierul: ", pdf_file)
